@@ -1,0 +1,17 @@
+{
+  "name": "gggodlin-hub",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./public"
+  },
+  "routes": [
+    {
+      "pattern": "gggodlin.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.gggodlin.com",
+      "custom_domain": true
+    }
+  ]
+}
