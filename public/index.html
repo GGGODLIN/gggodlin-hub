@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en" data-theme="anthropic-warm">
+<html lang="en" data-theme="anthropic-warm" data-site-release="pr-review-cloud-v1">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>GGGODLIN Labs — AI Agent Systems & Developer Tooling</title>
+    <title>GGGODLIN Labs — PR Review Cloud &amp; Open Source</title>
     <meta
       name="description"
-      content="GGGODLIN Labs is an independent software and AI engineering studio building deterministic agent harnesses, multi-model routing infrastructure, and developer workflows."
+      content="GGGODLIN Labs builds PR Review Cloud, a workspace for comparing pull request reviews across rounds, and open-source AI code review tools that run locally."
     />
     <link rel="canonical" href="https://gggodlin.com/" />
     <script type="application/ld+json">
@@ -15,7 +15,7 @@
         "@type": "Organization",
         "name": "GGGODLIN Labs",
         "url": "https://gggodlin.com/",
-        "description": "GGGODLIN Labs is an independent software and AI engineering studio building deterministic agent harnesses, multi-model routing infrastructure, and developer workflows.",
+        "description": "GGGODLIN Labs builds PR Review Cloud, a workspace for comparing pull request reviews across rounds, and open-source AI code review tools that run locally.",
         "email": "philip@gggodlin.com",
         "founder": {
           "@type": "Person",
@@ -39,99 +39,8 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="/site.css" />
     <style>
-      :root {
-        --bg: #f4f3ee;
-        --paper: #fbfaf6;
-        --raised: #ebe9e1;
-        --text-1: #1c1a17;
-        --text-2: #57514a;
-        --text-3: #6b655b;
-        --hairline: rgba(28, 26, 23, 0.1);
-        --accent: #a94e2d;
-        --accent-hover: #93421f;
-        --on-accent: #ffffff;
-        --primary-bg: var(--accent);
-        --primary-bg-hover: var(--accent-hover);
-        --primary-text: var(--on-accent);
-        --pass: #2a7a46;
-        --stamp: #a94e2d;
-        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-        --shadow-float: 0 8px 24px rgba(0, 0, 0, 0.06);
-        --ease: cubic-bezier(0.22, 1, 0.36, 1);
-        --font-sans: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
-        --font-mono: "IBM Plex Mono", "SF Mono", ui-monospace, monospace;
-        color-scheme: light;
-      }
-
-      [data-mode="dark"] {
-        --bg: #1c1a17;
-        --paper: #23201c;
-        --raised: #2c2924;
-        --text-1: #efe9de;
-        --text-2: #aaa398;
-        --text-3: #8f897e;
-        --hairline: rgba(239, 233, 222, 0.08);
-        --accent: #e08161;
-        --accent-hover: #ea9273;
-        --primary-bg: #efe9de;
-        --primary-bg-hover: #ffffff;
-        --primary-text: #1c1a17;
-        --pass: #4cc38a;
-        --stamp: #e08161;
-        --shadow-sm: none;
-        --shadow-float: 0 8px 24px rgba(0, 0, 0, 0.24);
-        color-scheme: dark;
-      }
-
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      body {
-        background-color: var(--bg);
-        color: var(--text-1);
-        font-family: var(--font-sans);
-        font-size: 15px;
-        line-height: 24px;
-        -webkit-font-smoothing: antialiased;
-        transition: background-color 200ms var(--ease), color 200ms var(--ease);
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      :focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
-        border-radius: 4px;
-      }
-
-      .wrap {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 32px;
-      }
-
-      .site-header {
-        height: 64px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-bottom: 1px solid var(--hairline);
-      }
-
-      .wordmark {
-        font-size: 18px;
-        line-height: 24px;
-        font-weight: 500;
-        color: var(--text-1);
-      }
-
       .nav {
         display: flex;
         align-items: center;
@@ -147,51 +56,6 @@
 
       .nav a:hover {
         color: var(--text-1);
-      }
-
-      .icon-btn {
-        width: 32px;
-        height: 32px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid var(--hairline);
-        border-radius: 8px;
-        background-color: transparent;
-        color: var(--text-2);
-        cursor: pointer;
-        transition: background-color 150ms var(--ease), color 150ms var(--ease);
-      }
-
-      .icon-btn:hover {
-        background-color: var(--raised);
-        color: var(--text-1);
-      }
-
-      .icon-btn:active {
-        transform: scale(0.97);
-      }
-
-      .icon {
-        width: 16px;
-        height: 16px;
-        fill: none;
-        stroke: currentColor;
-        stroke-width: 1.5;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-      }
-
-      .icon-sun {
-        display: none;
-      }
-
-      [data-mode="dark"] .icon-sun {
-        display: block;
-      }
-
-      [data-mode="dark"] .icon-moon {
-        display: none;
       }
 
       .menu {
@@ -368,23 +232,19 @@
 
       .run-row {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) 200px 64px;
-        gap: 16px;
-        height: 32px;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 6.75rem;
+        gap: 12px;
+        min-height: 32px;
         align-items: center;
         color: var(--text-2);
       }
 
       .run-row .key {
         color: var(--text-1);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
       }
 
       .run-row .detail {
         color: var(--text-3);
-        white-space: nowrap;
       }
 
       .run-row .status {
@@ -409,21 +269,6 @@
 
       .is-held {
         color: var(--stamp);
-      }
-
-      .is-skip {
-        color: var(--text-3);
-      }
-
-      .run-total {
-        margin-top: 8px;
-        padding-top: 8px;
-        border-top: 1px solid var(--hairline);
-        display: flex;
-        justify-content: space-between;
-        font-size: 12px;
-        line-height: 16px;
-        color: var(--text-3);
       }
 
       .run-foot {
@@ -517,8 +362,10 @@
         line-height: 16px;
       }
 
-      .source .src-label {
-        color: var(--text-3);
+      .ecosystem-links {
+        margin-top: 16px;
+        flex-flow: row wrap;
+        gap: 8px 24px;
       }
 
       .source a {
@@ -638,13 +485,26 @@
         width: 100%;
       }
 
-      .research {
+      .pass-terms {
+        max-width: 76ch;
+        margin-top: 20px;
+        font-size: 14px;
+        line-height: 20px;
+        color: var(--text-2);
+      }
+
+      .pass-terms a {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .experiments {
         display: grid;
-        grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 32px;
       }
 
-      .research article {
+      .experiments article {
         padding-top: 24px;
         border-top: 1px solid var(--hairline);
         display: flex;
@@ -652,66 +512,10 @@
         gap: 12px;
       }
 
-      .research h3 {
+      .experiments h3 {
         font-size: 18px;
         line-height: 24px;
         font-weight: 500;
-      }
-
-      .figure {
-        display: flex;
-        align-items: baseline;
-        gap: 8px;
-        font-variant-numeric: tabular-nums;
-      }
-
-      .figure strong {
-        font-size: 32px;
-        line-height: 36px;
-        font-weight: 500;
-      }
-
-      .figure span {
-        font-size: 14px;
-        line-height: 20px;
-        color: var(--text-3);
-      }
-
-      .research p {
-        color: var(--text-2);
-        max-width: 52ch;
-      }
-
-      .research .source {
-        margin-top: 4px;
-      }
-
-      .site-footer {
-        margin-top: 112px;
-        padding: 32px 0 48px;
-        border-top: 1px solid var(--hairline);
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 16px;
-        font-size: 14px;
-        line-height: 20px;
-        color: var(--text-3);
-      }
-
-      .site-footer nav {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px 24px;
-      }
-
-      .site-footer a {
-        color: var(--text-2);
-        transition: color 150ms var(--ease);
-      }
-
-      .site-footer a:hover {
-        color: var(--text-1);
       }
 
       .rise {
@@ -730,9 +534,6 @@
         .rise,
         .menu-panel {
           animation: none;
-        }
-        body {
-          transition: none;
         }
       }
 
@@ -754,9 +555,6 @@
       }
 
       @media (max-width: 760px) {
-        .wrap {
-          padding: 0 20px;
-        }
         .nav .nav-link {
           display: none;
         }
@@ -770,12 +568,11 @@
           font-size: 40px;
           line-height: 44px;
         }
-        .run-route,
         .run-row .detail {
           display: none;
         }
         .run-row {
-          grid-template-columns: minmax(0, 1fr) 64px;
+          grid-template-columns: minmax(0, 1fr) 6.75rem;
         }
         .run-foot {
           flex-direction: column;
@@ -804,12 +601,11 @@
           grid-column: auto;
         }
         .plans,
-        .research {
+        .experiments {
           grid-template-columns: 1fr;
         }
-        .site-footer {
-          flex-direction: column;
-          margin-top: 80px;
+        .run-head {
+          grid-template-columns: 1fr;
         }
       }
     </style>
@@ -866,77 +662,61 @@
 
       <section class="hero">
         <div class="hero-copy rise" style="--i: 0">
-          <h1>Agent-written code, checked before it reaches your reviewers</h1>
+          <h1>PR Review Cloud</h1>
           <p class="hero-sub">
-            Model routing, verification gates and cross-model PR review for engineering teams that
-            ship production code with coding agents
+            Compare findings across PR review rounds and see what changed. Run multi-axis AI reviews
+            with the open-source CLI on your machine and use the workspace to review the results.
+            PR Review Cloud incurs no server-side model charges.
           </p>
           <div class="actions">
-            <a class="btn btn-primary" href="#pricing">Start a free trial</a>
-            <a class="btn" href="#platform">See the platform</a>
+            <a class="btn btn-primary" href="https://app.gggodlin.com/sample">View 2-round live sample</a>
+            <a class="btn" href="https://app.gggodlin.com">Open workspace</a>
+            <a class="btn" href="https://github.com/GGGODLIN/claude-pr-review">Get the open-source CLI</a>
           </div>
         </div>
 
-        <figure class="run rise" style="--i: 1" aria-label="Example gate run on an agent pull request">
-          <div class="run-head">
-            <div class="run-title">feat: retry webhook delivery on 5xx</div>
-            <div class="run-meta">2 min ago</div>
-            <div class="run-meta">PR 214 · billing-service · opened by agent worker-3</div>
-          </div>
+        <figure class="run rise" style="--i: 1" aria-label="Illustrated two-round review summary">
+          <figcaption class="run-head">
+            <div class="run-title">claude-pr-review</div>
+            <div class="run-meta">Report projection schema: 2</div>
+          </figcaption>
 
-          <div class="run-block run-route">
-            <div class="run-label">Route</div>
+          <div class="run-block">
+            <div class="run-label">Cross-model verification</div>
             <div class="run-row">
-              <span class="key">anthropic/claude-opus</span>
-              <span class="detail">pool at 97%</span>
-              <span class="status is-skip">skip</span>
+              <span class="key">Round 1</span>
+              <span class="detail">Review findings</span>
             </div>
             <div class="run-row">
-              <span class="key">bedrock/claude-opus</span>
-              <span class="detail">cache hit 71%</span>
-              <span class="status is-pass">served</span>
-            </div>
-            <div class="run-total">
-              <span>41,882 in · 3,104 out</span>
-              <span>spend $12 of $40 daily cap</span>
+              <span class="key">Round 2</span>
+              <span class="detail">Recheck findings after changes</span>
             </div>
           </div>
 
           <div class="run-block">
-            <div class="run-label">Gates</div>
+            <div class="run-label">Prior review continuity: CHECKED</div>
             <div class="run-row">
-              <span class="key">Contract tests</span>
-              <span class="detail">128 of 128</span>
-              <span class="status is-pass">pass</span>
+              <span class="key">Retry limit</span>
+              <span class="detail">Cap verified</span>
+              <span class="status is-pass">FIXED</span>
             </div>
             <div class="run-row">
-              <span class="key">Scope boundary</span>
-              <span class="detail">4 files in scope</span>
-              <span class="status is-pass">pass</span>
-            </div>
-            <div class="run-row">
-              <span class="key">Cross-model review</span>
-              <span class="detail">2 models, 0 objections</span>
-              <span class="status is-pass">pass</span>
-            </div>
-            <div class="run-row">
-              <span class="key">Claim and evidence</span>
-              <span class="detail">1 claim unsupported</span>
-              <span class="status is-held">held</span>
+              <span class="key">Retry test</span>
+              <span class="detail">Timeout case missing</span>
+              <span class="status is-held">STILL_OPEN</span>
             </div>
           </div>
 
           <div class="run-foot">
             <dl class="evidence">
-              <dt>claim</dt>
-              <dd>Retries stop at 3 attempts</dd>
-              <dt>evidence</dt>
-              <dd class="missing">No test asserts the cap</dd>
+              <dt>Fixed</dt>
+              <dd>Round 2 verified the cap.</dd>
+              <dt>Open</dt>
+              <dd class="missing">The timeout path still needs a test.</dd>
             </dl>
-
             <div class="stamp" aria-hidden="true">
-              <strong>Held for review</strong>
-              <span>3 of 4 gates passed</span>
+              <strong>Compared</strong>
+              <span>Round 1 → Round 2</span>
             </div>
           </div>
         </figure>
@@ -944,143 +724,146 @@
 
       <section class="section" id="platform">
         <div class="section-head">
-          <h2>Platform</h2>
+          <h2>Platform &amp; open source</h2>
         </div>
         <ul class="ledger">
           <li>
             <div>
-              <h3>Magpie routing gateway</h3>
-              <div class="category">API gateway and quota pool</div>
+              <h3>PR Review Cloud</h3>
+              <div class="category">Cloud workspace</div>
             </div>
-            <p>
-              An LLM proxy and credential pool for Amazon Bedrock, Anthropic Claude, OpenAI and
-              open-weight models. It fails over when a provider's quota runs out, keeps prompt-cache
-              affinity and reports token use in one place.
-            </p>
+            <p>Store Markdown review reports, compare findings across rounds and share selected reports with revocable links.</p>
             <div class="source">
-              <span class="src-label">Architecture notes</span>
-              <a href="https://blog.gggodlin.com/blog/model-routing/">blog.gggodlin.com/blog/model-routing</a>
+              <a href="https://app.gggodlin.com">Open PR Review Cloud</a>
             </div>
           </li>
           <li>
             <div>
-              <h3>Deterministic agent gates</h3>
-              <div class="category">CI/CD governance</div>
+              <h3>claude-pr-review</h3>
+              <div class="category">Local review CLI</div>
             </div>
-            <p>
-              Pre-commit and CI checks that run before agent-generated code reaches a human
-              reviewer. They match claims to evidence, run contract tests and hold changes that leave
-              their scope.
-            </p>
+            <p>Run multi-axis PR reviews locally and check findings across models and review rounds.</p>
             <div class="source">
-              <span class="src-label">Technical spec</span>
-              <a href="https://blog.gggodlin.com/blog/rule-ladder/">blog.gggodlin.com/blog/rule-ladder</a>
+              <a href="https://github.com/GGGODLIN/claude-pr-review">Install claude-pr-review on GitHub</a>
             </div>
           </li>
           <li>
             <div>
-              <h3>Cross-model spec and PR review</h3>
-              <div class="category">Automated review</div>
+              <h3>cc-translate-proxy</h3>
+              <div class="category">Translation</div>
             </div>
-            <p>
-              Specs and pull requests are stress-tested by more than one model. The review looks for
-              architectural drift, security flaws and unverified assumptions before merge.
-            </p>
+            <p>A translation proxy for Claude Code.</p>
             <div class="source">
-              <span class="src-label">System overview</span>
-              <a href="https://blog.gggodlin.com/slides/model-division.html">blog.gggodlin.com/slides/model-division</a>
+              <a href="https://github.com/GGGODLIN/cc-translate-proxy">View cc-translate-proxy on GitHub</a>
             </div>
           </li>
           <li>
             <div>
-              <h3>Fleet telemetry and spend guardrails</h3>
-              <div class="category">Observability and FinOps</div>
+              <h3>gggodlin-cc-harness</h3>
+              <div class="category">Claude Code harness</div>
             </div>
-            <p>
-              Per-seat quota tracking and billing anomaly alerts that fire before a charge lands.
-              Tools on trial get an automatic review date.
-            </p>
+            <p>Hooks and workflow tooling for Claude Code.</p>
             <div class="source">
-              <span class="src-label">Repositories</span>
-              <a href="https://github.com/GGGODLIN-Labs">github.com/GGGODLIN-Labs</a>
+              <a href="https://github.com/GGGODLIN/gggodlin-cc-harness">View gggodlin-cc-harness on GitHub</a>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>cc-mod-image-view</h3>
+              <div class="category">Image viewing</div>
+            </div>
+            <p>An image viewer for Claude Code.</p>
+            <div class="source">
+              <a href="https://github.com/GGGODLIN/cc-mod-image-view">View cc-mod-image-view on GitHub</a>
             </div>
           </li>
         </ul>
+        <p class="source ecosystem-links">
+          <a href="https://github.com/GGGODLIN-Labs">GGGODLIN Labs on GitHub</a>
+          <a href="https://blog.gggodlin.com">Engineering blog</a>
+        </p>
       </section>
 
       <section class="section" id="pricing">
         <div class="section-head">
           <h2>Pricing</h2>
-          <p>Cloud or self-hosted</p>
+          <p>Prices in USD</p>
         </div>
         <div class="plans">
           <article class="plan">
-            <h3>Starter</h3>
-            <div class="price"><strong>$0</strong><span>per month</span></div>
-            <p class="plan-for">For individual developers and evaluation</p>
+            <h3>Free</h3>
+            <div class="price"><strong>$0</strong></div>
             <ul class="features">
-              <li>Up to 2 developer seats</li>
-              <li>100,000 routed LLM requests a month</li>
-              <li>Local CLI verification harness</li>
-              <li>Standard pre-commit contract gates</li>
+              <li>Up to 20 stored reports, 128 KB per report</li>
+              <li>GitHub sign-in</li>
+              <li>Private by default, with instantly revocable share links</li>
+              <li>One-line CLI upload with <code>curl</code> or web upload</li>
             </ul>
-            <a class="btn" href="mailto:philip@gggodlin.com?subject=GGGODLIN%20Labs%20Starter%20Access">Get started</a>
+            <a class="btn" href="https://app.gggodlin.com">Start free</a>
           </article>
 
           <article class="plan plan-featured">
-            <h3>Growth</h3>
-            <div class="price"><strong>$49</strong><span>per seat a month</span></div>
-            <p class="plan-for">For engineering teams of 3 to 30 seats</p>
+            <h3>Pro</h3>
+            <div class="price"><strong>$19</strong><span>/ month</span></div>
             <ul class="features">
-              <li>Shared quota pool and failover across providers</li>
-              <li>Cross-model PR and spec review</li>
-              <li>Spend limits with webhook alerts</li>
-              <li>Priority engineering support</li>
+              <li>Up to 500 stored reports, 128 KB per report</li>
+              <li>Track which findings were fixed across rounds</li>
+              <li>Personal API key management and revocable share links</li>
             </ul>
-            <a class="btn btn-primary" href="mailto:philip@gggodlin.com?subject=GGGODLIN%20Labs%20Growth%20Trial">Start a 14-day trial</a>
+            <a class="btn btn-primary" href="https://app.gggodlin.com">Open workspace for Pro</a>
           </article>
 
           <article class="plan">
-            <h3>Enterprise VPC</h3>
-            <div class="price"><strong>Custom</strong></div>
-            <p class="plan-for">Dedicated deployment and custom SLAs</p>
+            <h3>Pro Pass</h3>
+            <div class="price"><strong>$49</strong><span>one-time</span></div>
+            <p class="plan-for">A one-time purchase for an individual account with Pro access.</p>
             <ul class="features">
-              <li>Self-hosted VPC on AWS or Cloudflare</li>
-              <li>SSO, SAML and per-seat permission isolation</li>
-              <li>Custom audit log retention and security gates</li>
-              <li>Dedicated solutions architect</li>
+              <li>Up to 500 stored reports, 128 KB per report</li>
             </ul>
-            <a class="btn" href="mailto:philip@gggodlin.com?subject=GGGODLIN%20Labs%20Enterprise%20Inquiry">Contact sales</a>
+            <a class="btn" href="https://app.gggodlin.com">Open workspace for Pro Pass</a>
           </article>
         </div>
+        <p class="pass-terms">
+          <strong>Pro Pass guarantee.</strong> No monthly fee for as long as the service operates.
+          We guarantee at least 12 months of operation from purchase. If we retire the service, we
+          will give you at least 30 days' advance notice to export your reports. If we retire the
+          service within 12 months of purchase, we will issue a pro-rata refund for unused months
+          in that 12-month period. See the <a href="/refund">refund policy</a> for details.
+        </p>
       </section>
 
-      <section class="section" id="research">
+      <section class="section" id="experiments">
         <div class="section-head">
-          <h2>Research and open source</h2>
+          <h2>Experiments</h2>
+          <p>Hackathon projects</p>
         </div>
-        <div class="research">
+        <div class="experiments">
           <article>
-            <h3>Field reports and engineering blog</h3>
-            <div class="figure"><strong>45</strong><span>articles</span></div>
-            <p>
-              Write-ups on AI coding workflows, tool adoption numbers and production lessons from
-              building agent infrastructure.
-            </p>
+            <h3>CreditRoll Live</h3>
             <div class="source">
-              <span class="src-label">Browse articles</span>
-              <a href="https://blog.gggodlin.com">blog.gggodlin.com</a>
+              <a href="https://youtu.be/cE3SuZF7sic">Watch CreditRoll Live demo</a>
+              <a href="https://github.com/GGGODLIN/paypal-credit-roll-live">View CreditRoll Live source</a>
             </div>
           </article>
           <article>
-            <h3>Open-source harnesses and benchmarks</h3>
-            <p>
-              Reference implementations, MCP servers and evaluation suites maintained by GGGODLIN
-              Labs and founder Philip Lin.
-            </p>
+            <h3>FlowWitness</h3>
             <div class="source">
-              <span class="src-label">Explore GitHub</span>
-              <a href="https://github.com/GGGODLIN-Labs">github.com/GGGODLIN-Labs</a>
+              <a href="https://youtu.be/2H3QmFD4D20">Watch FlowWitness demo</a>
+              <a href="https://github.com/GGGODLIN/firebase-flow-witness">View FlowWitness source</a>
+            </div>
+          </article>
+          <article>
+            <h3>ReserveRail</h3>
+            <div class="source">
+              <a href="https://youtu.be/NO--HeY-e3A">Watch ReserveRail demo</a>
+              <a href="https://github.com/GGGODLIN/reserverail">View ReserveRail source</a>
+            </div>
+          </article>
+          <article>
+            <h3>ClauseClock</h3>
+            <div class="source">
+              <a href="https://youtu.be/xFWynDts-Ow">Watch ClauseClock demo</a>
+              <a href="https://github.com/GGGODLIN/atlassian-clause-clock">View ClauseClock source</a>
             </div>
           </article>
         </div>
@@ -1089,6 +872,9 @@
       <footer class="site-footer">
         <div>© 2026 GGGODLIN Labs · Xinyi Dist., Taipei City 110615, Taiwan</div>
         <nav aria-label="Footer">
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+          <a href="/refund">Refunds</a>
           <a href="mailto:philip@gggodlin.com">philip@gggodlin.com</a>
           <a href="https://github.com/GGGODLIN-Labs">GitHub</a>
           <a href="https://blog.gggodlin.com">Engineering blog</a>
@@ -1096,20 +882,6 @@
       </footer>
     </div>
 
-    <script>
-      const root = document.documentElement;
-      const toggle = document.getElementById("theme-toggle");
-      const apply = (mode) => {
-        root.setAttribute("data-mode", mode);
-        toggle.setAttribute("aria-label", mode === "dark" ? "Switch to light mode" : "Switch to dark mode");
-      };
-      const saved = localStorage.getItem("gggodlin-mode");
-      apply(saved === "dark" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light");
-      toggle.addEventListener("click", () => {
-        const next = root.getAttribute("data-mode") === "dark" ? "light" : "dark";
-        apply(next);
-        localStorage.setItem("gggodlin-mode", next);
-      });
-    </script>
+    <script type="module" src="/theme.mjs"></script>
   </body>
 </html>

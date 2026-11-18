@@ -1,0 +1,42 @@
+name: Deploy site
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Check public contract
+        run: |
+          node --test
+          node scripts/check-public-contract.mjs public
+      - name: Deploy to Cloudflare Workers
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler deploy
+      - name: Verify production release
+        shell: bash
+        run: |
+          set -euo pipefail
+          homepage="$RUNNER_TEMP/gggodlin-home.html"
+          status=$(curl -fsSL -o "$homepage" -w '%{http_code}' https://gggodlin.com/)
+          test "$status" = 200
+          grep -Fq 'data-site-release="pr-review-cloud-v1"' "$homepage"
+          for path in /privacy /terms /refund /robots.txt; do
+            status=$(curl -fsSL -o /dev/null -w '%{http_code}' "https://gggodlin.com$path")
+            test "$status" = 200
+          done
+          status=$(curl -fsSI -o /dev/null -w '%{http_code}' https://gggodlin.com/codex-ambassador.mp4)
+          test "$status" = 200
