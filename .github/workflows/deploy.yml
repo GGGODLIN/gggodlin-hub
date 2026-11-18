@@ -31,12 +31,16 @@ jobs:
         run: |
           set -euo pipefail
           homepage="$RUNNER_TEMP/gggodlin-home.html"
+          page="$RUNNER_TEMP/gggodlin-route.txt"
           status=$(curl -fsSL -o "$homepage" -w '%{http_code}' https://gggodlin.com/)
           test "$status" = 200
           grep -Fq 'data-site-release="pr-review-cloud-v1"' "$homepage"
-          for path in /privacy /terms /refund /robots.txt; do
-            status=$(curl -fsSL -o /dev/null -w '%{http_code}' "https://gggodlin.com$path")
+          for pair in "/privacy:<h1>Privacy Policy</h1>" "/terms:<h1>Terms of Service</h1>" "/refund:<h1>Refund Policy</h1>" "/robots.txt:Allow: /"; do
+            path="${pair%%:*}"
+            marker="${pair#*:}"
+            status=$(curl -fsSL -o "$page" -w '%{http_code}' "https://gggodlin.com$path")
             test "$status" = 200
+            grep -Fq "$marker" "$page"
           done
           status=$(curl -fsSI -o /dev/null -w '%{http_code}' https://gggodlin.com/codex-ambassador.mp4)
           test "$status" = 200

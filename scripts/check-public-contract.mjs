@@ -43,9 +43,13 @@ function* listFiles(directory, prefix = '') {
   }
 }
 
+function stripComments(html) {
+  return html.replace(/<!--[\s\S]*?-->/g, '');
+}
+
 function references(html, attributes = 'href|src|poster') {
   const attribute = new RegExp(`\\s(?:${attributes})\\s*=\\s*(?:"([^"]*)"|'([^']*)'|([^\\s>]+))`, 'gi');
-  return [...html.matchAll(/<[a-z][^>]*>/gi)].flatMap(([tag]) =>
+  return [...stripComments(html).matchAll(/<[a-z](?:"[^"]*"|'[^']*'|[^>"'])*>/gi)].flatMap(([tag]) =>
     [...tag.matchAll(attribute)].map(([, double, single, bare]) =>
       (double ?? single ?? bare).replaceAll('&amp;', '&')));
 }
@@ -78,7 +82,8 @@ function checkReference(from, reference, files, text, errors) {
   }
 }
 
-function checkHome(home, errors) {
+function checkHome(rawHome, errors) {
+  const home = stripComments(rawHome);
   let organization;
   for (const [, json] of home.matchAll(/<script\b[^>]*\btype=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
     try {

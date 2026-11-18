@@ -35,7 +35,7 @@ test('published output passes the non-empty public contract', () => {
 test('home links to the cloud workspace, live sample and open-source installation', () => {
   const home = readFileSync(join(publicDir, 'index.html'), 'utf8');
   const hero = home.match(/<section class="hero">([\s\S]*?)<\/section>/)?.[1] ?? '';
-  for (const link of [`${workspace}/sample`, workspace, openSource]) {
+  for (const link of [`${workspace}/sample`, `${workspace}/workspace`, openSource]) {
     assert.ok(hero.includes(`href="${link}"`), `missing hero link ${link}`);
   }
   for (const name of ['cc-translate-proxy', 'gggodlin-cc-harness', 'cc-mod-image-view']) {
@@ -59,7 +59,7 @@ test('all three pricing plans describe the published price, capacity and workspa
   ];
   for (const [i, [name, ...details]] of expected.entries()) {
     assert.ok(plans[i].includes(`<h3>${name}</h3>`), `missing ${name} plan`);
-    for (const detail of [...details, '128 KB', `href="${workspace}"`]) {
+    for (const detail of [...details, '128 KB', `href="${workspace}/workspace"`]) {
       assert.ok(plans[i].includes(detail), `${name} is missing ${detail}`);
     }
   }
@@ -139,7 +139,7 @@ for (const [name, fixture, diagnostics] of [
   ['forbidden copy', '<p>mAgPiE · credential pool · quota pool · Enterprise VPC · SAML · SSO · per-seat · 100,000 routed LLM requests</p>',
     ['mAgPiE', 'credential pool', 'quota pool', 'Enterprise VPC', 'SAML', 'SSO', 'per-seat', '100,000 routed LLM requests']
       .map((term) => `forbidden copy: ${term}`)],
-  ['broken links', '<a href="/contract-missing.html">Missing</a><a href="#not-an-id">Missing ID</a>',
+  ['broken links', '<a title="1 > 0" href="/contract-missing.html">Missing</a><a href="#not-an-id">Missing ID</a>',
     ['broken internal link /contract-missing.html', 'broken internal link #not-an-id']],
   ['protected experiment hostnames', '<a href="https://paypal-credit-roll-live.onrender.com/demo">Demo</a>\n144.202.121.72 firebase-flow-witness.vercel.app reserverail.gggodlin.com atlassian-clause-clock.vercel.app',
     ['paypal-credit-roll-live.onrender.com', '144.202.121.72', 'firebase-flow-witness.vercel.app', 'reserverail.gggodlin.com', 'atlassian-clause-clock.vercel.app']
@@ -161,3 +161,14 @@ for (const [name, fixture, diagnostics] of [
     }
   });
 }
+
+test('contract rejects commented-out footer legal links', (t) => {
+  const directory = tempDir(t);
+  cpSync(publicDir, directory, { recursive: true });
+  const home = readFileSync(join(directory, 'index.html'), 'utf8')
+    .replace('<a href="/privacy">Privacy</a>', '<!-- <a href="/privacy">Privacy</a> -->');
+  writeFileSync(join(directory, 'index.html'), home);
+  const result = runContract(directory);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /index\.html: missing footer link \/privacy/);
+});
