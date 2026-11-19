@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" data-theme="anthropic-warm">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Page Not Found — GGGODLIN Labs</title>
+    <meta name="description" content="The requested page could not be found on GGGODLIN Labs." />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500&amp;display=swap" />
+    <link rel="stylesheet" href="/site.css" />
+    <style>
+      .not-found-code {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        letter-spacing: 0.06em;
+        color: var(--accent);
+        margin-bottom: 12px;
+      }
+      .not-found-actions {
+        margin-top: 28px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .not-found-actions a {
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        padding: 0 18px;
+        border-radius: 8px;
+        border: 1px solid var(--hairline);
+        background-color: var(--bg);
+        color: var(--text-1);
+        font-size: 14px;
+        font-weight: 500;
+      }
+      .not-found-actions a.primary {
+        background-color: var(--primary-bg);
+        border-color: transparent;
+        color: var(--primary-text);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="site-header">
+        <a class="wordmark" href="/">GGGODLIN Labs</a>
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark mode">
+          <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+          </svg>
+          <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41m0-14.14-1.41 1.41M6.34 17.66l-1.41 1.41" />
+          </svg>
+        </button>
+      </header>
+      <main class="legal">
+        <div class="not-found-code">404 · NOT FOUND</div>
+        <h1>Page not found</h1>
+        <p>The page you requested does not exist on gggodlin.com. You can return to the homepage or open the live PR Review Cloud sample.</p>
+        <div class="not-found-actions">
+          <a class="primary" href="/">Back to home</a>
+          <a href="https://app.gggodlin.com/sample">View 2-round live sample</a>
+        </div>
+      </main>
+      <footer class="site-footer">
+        <div>© 2026 GGGODLIN Labs · Xinyi Dist., Taipei City 110615, Taiwan</div>
+        <nav aria-label="Footer">
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+          <a href="/refund">Refunds</a>
+          <a href="mailto:philip@gggodlin.com">philip@gggodlin.com</a>
+          <a href="https://github.com/GGGODLIN-Labs">GitHub</a>
+          <a href="https://blog.gggodlin.com">Engineering blog</a>
+        </nav>
+      </footer>
+    </div>
+    <script type="module" src="/theme.mjs"></script>
+  </body>
+</html>

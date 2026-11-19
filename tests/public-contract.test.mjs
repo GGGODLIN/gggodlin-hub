@@ -32,6 +32,28 @@ test('published output passes the non-empty public contract', () => {
   assert.match(result.stdout, /Public contract passed: [1-9]\d* non-empty files checked/);
 });
 
+test('site publishes shared SVG favicon, themed 404 page and security headers', () => {
+  const config = JSON.parse(readFileSync(join(root, 'wrangler.jsonc'), 'utf8'));
+  assert.equal(config.assets.not_found_handling, '404-page');
+
+  const favicon = readFileSync(join(publicDir, 'favicon.svg'), 'utf8');
+  assert.match(favicon, /<svg\b[^>]*viewBox="0 0 32 32"/);
+
+  const notFound = readFileSync(join(publicDir, '404.html'), 'utf8');
+  assert.match(notFound, /<h1>Page not found<\/h1>/);
+  assert.match(notFound, /<meta name="robots" content="noindex" \/>/);
+
+  const headers = readFileSync(join(publicDir, '_headers'), 'utf8');
+  for (const header of ['X-Content-Type-Options: nosniff', 'Referrer-Policy:', 'X-Frame-Options: DENY']) {
+    assert.ok(headers.includes(header), `missing security header ${header}`);
+  }
+
+  for (const file of ['index.html', 'privacy/index.html', 'terms/index.html', 'refund/index.html', '404.html']) {
+    const html = readFileSync(join(publicDir, file), 'utf8');
+    assert.ok(html.includes('<link rel="icon" type="image/svg+xml" href="/favicon.svg" />'), `${file} missing favicon link`);
+  }
+});
+
 test('home links to the cloud workspace, live sample and open-source installation', () => {
   const home = readFileSync(join(publicDir, 'index.html'), 'utf8');
   const hero = home.match(/<section class="hero">([\s\S]*?)<\/section>/)?.[1] ?? '';
