@@ -82,6 +82,18 @@ test('home has main landmark, skip link, two-column hero rows and consistent leg
   }
 });
 
+test('site exposes OG/Twitter metadata, SoftwareApplication JSON-LD, direct app nav links and balanced Pro Pass list', () => {
+  const home = readFileSync(join(publicDir, 'index.html'), 'utf8');
+  assert.ok(home.includes('"@type": "SoftwareApplication"'));
+  assert.ok(home.includes('<a class="nav-link" href="https://app.gggodlin.com/sample">Live sample</a>'));
+  assert.ok(home.includes('Guaranteed at least 12 months of operation'));
+  for (const file of ['index.html', 'privacy/index.html', 'terms/index.html', 'refund/index.html']) {
+    const html = readFileSync(join(publicDir, file), 'utf8');
+    assert.ok(html.includes('property="og:title"'), `${file} missing og:title`);
+    assert.ok(html.includes('name="twitter:card"'), `${file} missing twitter:card`);
+  }
+});
+
 test('home links to the cloud workspace, live sample and open-source installation', () => {
   const home = readFileSync(join(publicDir, 'index.html'), 'utf8');
   const hero = home.match(/<section class="hero">([\s\S]*?)<\/section>/)?.[1] ?? '';

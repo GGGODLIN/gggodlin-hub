@@ -8,6 +8,20 @@
       name="description"
       content="GGGODLIN Labs builds PR Review Cloud, a workspace for comparing pull request reviews across rounds, and open-source AI code review tools that run locally."
     />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GGGODLIN Labs" />
+    <meta property="og:title" content="GGGODLIN Labs — PR Review Cloud &amp; Open Source" />
+    <meta
+      property="og:description"
+      content="Compare pull request review findings across rounds with zero server-side model charges."
+    />
+    <meta property="og:url" content="https://gggodlin.com/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="GGGODLIN Labs — PR Review Cloud &amp; Open Source" />
+    <meta
+      name="twitter:description"
+      content="Compare pull request review findings across rounds with zero server-side model charges."
+    />
     <link rel="canonical" href="https://gggodlin.com/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <script type="application/ld+json">
@@ -31,6 +45,22 @@
         "sameAs": [
           "https://github.com/GGGODLIN-Labs",
           "https://blog.gggodlin.com"
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "PR Review Cloud",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Web",
+        "url": "https://app.gggodlin.com/",
+        "description": "Zero-LLM-burn cloud workspace for storing, comparing, and sharing multi-axis pull request review reports generated locally by claude-pr-review.",
+        "offers": [
+          { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD" },
+          { "@type": "Offer", "name": "Pro", "price": "19", "priceCurrency": "USD" },
+          { "@type": "Offer", "name": "Pro Pass", "price": "49", "priceCurrency": "USD" }
         ]
       }
     </script>
@@ -653,6 +683,8 @@
         <nav class="nav" aria-label="Main">
           <a class="nav-link" href="#platform">Platform</a>
           <a class="nav-link" href="#pricing">Pricing</a>
+          <a class="nav-link" href="https://app.gggodlin.com/sample">Live sample</a>
+          <a class="nav-link" href="https://app.gggodlin.com/workspace">Workspace</a>
           <a class="nav-link" href="https://blog.gggodlin.com">Engineering blog</a>
           <a class="nav-link" href="https://github.com/GGGODLIN-Labs">GitHub</a>
           <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark mode">
@@ -682,6 +714,8 @@
             <div class="menu-panel">
               <a href="#platform">Platform</a>
               <a href="#pricing">Pricing</a>
+              <a href="https://app.gggodlin.com/sample">Live sample</a>
+              <a href="https://app.gggodlin.com/workspace">Workspace</a>
               <a href="https://blog.gggodlin.com">Engineering blog</a>
               <a href="https://github.com/GGGODLIN-Labs">GitHub</a>
             </div>
@@ -817,7 +851,7 @@
       <section class="section" id="pricing">
         <div class="section-head">
           <h2>Pricing</h2>
-          <p>Prices in USD</p>
+          <p>Prices in USD · Free is live now; paid upgrades open inside the workspace once billing launches</p>
         </div>
         <div class="plans">
           <article class="plan">
@@ -825,7 +859,7 @@
             <div class="price"><strong>$0</strong></div>
             <ul class="features">
               <li>Up to 20 stored reports, 128 KB per report</li>
-              <li>GitHub sign-in</li>
+              <li>GitHub sign-in &amp; cross-round finding comparison</li>
               <li>Private by default, with instantly revocable share links</li>
               <li>One-line CLI upload with <code>curl</code> or web upload</li>
             </ul>
@@ -839,6 +873,7 @@
               <li>Up to 500 stored reports, 128 KB per report</li>
               <li>Track which findings were fixed across rounds</li>
               <li>Personal API key management and revocable share links</li>
+              <li>Checkout activates inside the workspace once billing opens</li>
             </ul>
             <a class="btn btn-primary" href="https://app.gggodlin.com/workspace">Open workspace for Pro</a>
           </article>
@@ -849,6 +884,9 @@
             <p class="plan-for">A one-time purchase for an individual account with Pro access.</p>
             <ul class="features">
               <li>Up to 500 stored reports, 128 KB per report</li>
+              <li>Track which findings were fixed across rounds</li>
+              <li>Personal API key management and revocable share links</li>
+              <li>Guaranteed at least 12 months of operation, no monthly fee</li>
             </ul>
             <a class="btn" href="https://app.gggodlin.com/workspace">Open workspace for Pro Pass</a>
           </article>
