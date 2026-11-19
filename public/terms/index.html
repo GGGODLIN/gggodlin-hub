@@ -15,19 +15,27 @@
   </head>
   <body>
     <div class="wrap">
+      <a class="skip-link" href="#main-content">Skip to main content</a>
       <header class="site-header">
         <a class="wordmark" href="/">GGGODLIN Labs</a>
-        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark mode">
-          <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-          </svg>
-          <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="4" />
-            <path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41m0-14.14-1.41 1.41M6.34 17.66l-1.41 1.41" />
-          </svg>
-        </button>
+        <div class="header-actions">
+          <nav class="subnav" aria-label="Main">
+            <a href="/">Home</a>
+            <a href="/#pricing">Pricing</a>
+            <a href="https://app.gggodlin.com/sample">Live sample</a>
+          </nav>
+          <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark mode">
+            <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+            </svg>
+            <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41m0-14.14-1.41 1.41M6.34 17.66l-1.41 1.41" />
+            </svg>
+          </button>
+        </div>
       </header>
-      <main class="legal">
+      <main id="main-content" class="legal">
         <h1>Terms of Service</h1>
         <p>GGGODLIN Labs operates PR Review Cloud. For questions about the service or these terms, contact <a href="mailto:philip@gggodlin.com">philip@gggodlin.com</a>.</p>
         <h2>Using the workspace</h2>
@@ -43,10 +51,11 @@
       <footer class="site-footer">
         <div>© 2026 GGGODLIN Labs · Xinyi Dist., Taipei City 110615, Taiwan</div>
         <nav aria-label="Footer">
+          <a href="/">Home</a>
           <a href="/privacy">Privacy</a>
           <a href="/terms" aria-current="page">Terms</a>
           <a href="/refund">Refunds</a>
-          <a href="mailto:philip@gggodlin.com">Contact</a>
+          <a href="mailto:philip@gggodlin.com">philip@gggodlin.com</a>
           <a href="https://github.com/GGGODLIN-Labs">GitHub</a>
           <a href="https://blog.gggodlin.com">Engineering blog</a>
         </nav>

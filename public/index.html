@@ -249,6 +249,10 @@
         color: var(--text-2);
       }
 
+      .run-row--two {
+        grid-template-columns: 7rem minmax(0, 1fr);
+      }
+
       .run-row .key {
         color: var(--text-1);
       }
@@ -528,6 +532,17 @@
         font-weight: 500;
       }
 
+      .experiments .source {
+        gap: 8px;
+      }
+
+      .experiments .source a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 32px;
+        padding: 4px 0;
+      }
+
       .rise {
         animation: rise 400ms var(--ease) both;
         animation-delay: calc(var(--i, 0) * 60ms);
@@ -578,11 +593,14 @@
           font-size: 40px;
           line-height: 44px;
         }
-        .run-row .detail {
+        .run-row:not(.run-row--two) .detail {
           display: none;
         }
-        .run-row {
+        .run-row:not(.run-row--two) {
           grid-template-columns: minmax(0, 1fr) 6.75rem;
+        }
+        .run-row--two {
+          grid-template-columns: 5.5rem minmax(0, 1fr);
         }
         .run-foot {
           flex-direction: column;
@@ -629,6 +647,7 @@
     </svg>
 
     <div class="wrap">
+      <a class="skip-link" href="#main-content">Skip to main content</a>
       <header class="site-header">
         <a class="wordmark" href="https://gggodlin.com">GGGODLIN Labs</a>
         <nav class="nav" aria-label="Main">
@@ -670,6 +689,7 @@
         </nav>
       </header>
 
+      <main id="main-content">
       <section class="hero">
         <div class="hero-copy rise" style="--i: 0">
           <h1>PR Review Cloud</h1>
@@ -693,11 +713,11 @@
 
           <div class="run-block">
             <div class="run-label">Cross-model verification</div>
-            <div class="run-row">
+            <div class="run-row run-row--two">
               <span class="key">Round 1</span>
               <span class="detail">Review findings</span>
             </div>
-            <div class="run-row">
+            <div class="run-row run-row--two">
               <span class="key">Round 2</span>
               <span class="detail">Recheck findings after changes</span>
             </div>
@@ -878,6 +898,7 @@
           </article>
         </div>
       </section>
+      </main>
 
       <footer class="site-footer">
         <div>© 2026 GGGODLIN Labs · Xinyi Dist., Taipei City 110615, Taiwan</div>

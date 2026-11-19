@@ -67,6 +67,21 @@ test('all pages prevent dark-mode FOUC before CSS and theme script handles syste
   assert.match(themeScript, /Escape/);
 });
 
+test('home has main landmark, skip link, two-column hero rows and consistent legal subnav', () => {
+  const home = readFileSync(join(publicDir, 'index.html'), 'utf8');
+  assert.ok(home.includes('<a class="skip-link" href="#main-content">Skip to main content</a>'));
+  assert.ok(home.includes('<main id="main-content">'));
+  assert.ok(home.includes('class="run-row run-row--two"'));
+  assert.ok(home.includes('min-height: 32px;'));
+
+  for (const file of ['privacy/index.html', 'terms/index.html', 'refund/index.html']) {
+    const html = readFileSync(join(publicDir, file), 'utf8');
+    assert.ok(html.includes('<a class="skip-link" href="#main-content">'), `${file} missing skip link`);
+    assert.ok(html.includes('class="subnav"'), `${file} missing subnav`);
+    assert.ok(html.includes('<a href="mailto:philip@gggodlin.com">philip@gggodlin.com</a>'), `${file} footer email label mismatch`);
+  }
+});
+
 test('home links to the cloud workspace, live sample and open-source installation', () => {
   const home = readFileSync(join(publicDir, 'index.html'), 'utf8');
   const hero = home.match(/<section class="hero">([\s\S]*?)<\/section>/)?.[1] ?? '';
