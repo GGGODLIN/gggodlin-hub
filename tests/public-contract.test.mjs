@@ -94,6 +94,13 @@ test('site exposes OG/Twitter metadata, SoftwareApplication JSON-LD, direct app 
   }
 });
 
+test('home includes restrained Cartesia Startups logo linking to cartesia.ai/startups', () => {
+  const home = readFileSync(join(publicDir, 'index.html'), 'utf8');
+  assert.ok(home.includes('href="https://www.cartesia.ai/startups"'));
+  assert.ok(home.includes('class="supporter-logo"'));
+  assert.ok(home.includes('Supported by'));
+});
+
 test('home links to the cloud workspace, live sample and open-source installation', () => {
   const home = readFileSync(join(publicDir, 'index.html'), 'utf8');
   const hero = home.match(/<section class="hero">([\s\S]*?)<\/section>/)?.[1] ?? '';
