@@ -1,14 +1,58 @@
 const root = document.documentElement;
 const toggle = document.getElementById('theme-toggle');
+const media = window.matchMedia('(prefers-color-scheme: dark)');
+
 const apply = (mode) => {
   root.setAttribute('data-mode', mode);
-  toggle.setAttribute('aria-label', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  if (toggle) {
+    toggle.setAttribute('aria-label', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  }
 };
-const saved = localStorage.getItem('gggodlin-mode');
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-apply((saved ?? (prefersDark ? 'dark' : 'light')) === 'dark' ? 'dark' : 'light');
-toggle.addEventListener('click', () => {
+
+const readSaved = () => {
+  try {
+    return localStorage.getItem('gggodlin-mode');
+  } catch {
+    return null;
+  }
+};
+
+const saved = readSaved();
+apply((saved ?? (media.matches ? 'dark' : 'light')) === 'dark' ? 'dark' : 'light');
+
+toggle?.addEventListener('click', () => {
   const next = root.getAttribute('data-mode') === 'dark' ? 'light' : 'dark';
   apply(next);
-  localStorage.setItem('gggodlin-mode', next);
+  try {
+    localStorage.setItem('gggodlin-mode', next);
+  } catch {
+    // Ignore storage errors in private browsing contexts.
+  }
 });
+
+media.addEventListener('change', (event) => {
+  if (!readSaved()) {
+    apply(event.matches ? 'dark' : 'light');
+  }
+});
+
+const menu = document.querySelector('details.menu');
+if (menu) {
+  const summary = menu.querySelector('summary');
+  menu.addEventListener('click', (event) => {
+    if (event.target instanceof Element && event.target.closest('.menu-panel a')) {
+      menu.open = false;
+    }
+  });
+  document.addEventListener('click', (event) => {
+    if (menu.open && event.target instanceof Node && !menu.contains(event.target)) {
+      menu.open = false;
+    }
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menu.open) {
+      menu.open = false;
+      if (summary instanceof HTMLElement) summary.focus();
+    }
+  });
+}

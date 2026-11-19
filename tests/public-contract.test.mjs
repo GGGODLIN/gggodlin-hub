@@ -54,6 +54,19 @@ test('site publishes shared SVG favicon, themed 404 page and security headers', 
   }
 });
 
+test('all pages prevent dark-mode FOUC before CSS and theme script handles system sync and menu closing', () => {
+  for (const file of ['index.html', 'privacy/index.html', 'terms/index.html', 'refund/index.html', '404.html']) {
+    const html = readFileSync(join(publicDir, file), 'utf8');
+    const bootIdx = html.indexOf("localStorage.getItem('gggodlin-mode')");
+    const cssIdx = html.indexOf('<link rel="stylesheet" href="/site.css" />');
+    assert.ok(bootIdx > 0 && cssIdx > bootIdx, `${file} must run theme boot script before /site.css`);
+  }
+  const themeScript = readFileSync(join(publicDir, 'theme.mjs'), 'utf8');
+  assert.match(themeScript, /addEventListener\('change'/);
+  assert.match(themeScript, /details\.menu/);
+  assert.match(themeScript, /Escape/);
+});
+
 test('home links to the cloud workspace, live sample and open-source installation', () => {
   const home = readFileSync(join(publicDir, 'index.html'), 'utf8');
   const hero = home.match(/<section class="hero">([\s\S]*?)<\/section>/)?.[1] ?? '';
