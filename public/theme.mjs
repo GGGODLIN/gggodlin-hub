@@ -30,11 +30,16 @@ toggle?.addEventListener('click', () => {
   }
 });
 
-media.addEventListener('change', (event) => {
+const onSystemChange = (event) => {
   if (!readSaved()) {
     apply(event.matches ? 'dark' : 'light');
   }
-});
+};
+if (typeof media.addEventListener === 'function') {
+  media.addEventListener('change', onSystemChange);
+} else if (typeof media.addListener === 'function') {
+  media.addListener(onSystemChange);
+}
 
 const menu = document.querySelector('details.menu');
 if (menu) {

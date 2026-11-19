@@ -84,13 +84,14 @@
       .nav {
         display: flex;
         align-items: center;
-        gap: 24px;
+        gap: 18px;
         font-size: 14px;
         line-height: 20px;
       }
 
       .nav a {
         color: var(--text-2);
+        white-space: nowrap;
         transition: color 150ms var(--ease);
       }
 
@@ -609,13 +610,16 @@
         }
       }
 
-      @media (max-width: 760px) {
+      @media (max-width: 900px) {
         .nav .nav-link {
           display: none;
         }
         .menu {
           display: block;
         }
+      }
+
+      @media (max-width: 760px) {
         .hero {
           padding: 48px 0 0;
         }
