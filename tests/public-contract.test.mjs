@@ -139,6 +139,7 @@ test('legal pages are published at extensionless routes and state the same pass 
   assert.equal(config.assets.directory, './public');
   assert.equal(config.assets.html_handling, 'drop-trailing-slash', 'canonical legal routes must serve without a slash');
   assert.ok(config.routes.some((route) => route.pattern === 'gggodlin.com' && route.custom_domain === true));
+  assert.ok(config.routes.some((route) => route.pattern === 'labs.gggodlin.com' && route.custom_domain === true));
   const home = readFileSync(join(publicDir, 'index.html'), 'utf8');
   const privacy = readFileSync(join(publicDir, 'privacy/index.html'), 'utf8');
   const terms = readFileSync(join(publicDir, 'terms/index.html'), 'utf8');

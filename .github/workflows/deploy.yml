@@ -44,3 +44,7 @@ jobs:
           done
           status=$(curl -fsSI -o /dev/null -w '%{http_code}' https://gggodlin.com/codex-ambassador.mp4)
           test "$status" = 200
+          labs_home="$RUNNER_TEMP/labs-home.html"
+          status=$(curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors -o "$labs_home" -w '%{http_code}' https://labs.gggodlin.com/)
+          test "$status" = 200
+          grep -Fq 'data-site-release="pr-review-cloud-v1"' "$labs_home"
